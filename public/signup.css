@@ -71,46 +71,65 @@ body{
 }
 
 
-.section{
-    max-width: 350px;
-    height: 200px;
-    border: 1.5px solid rgb(193, 250, 193) ;
-    padding: 20px;
-    background-color: white;
-    text-align: justify;
-    margin-left:50px;
-    margin-bottom: 20px;
+@media screen  and (max-width:650px){
+   
+    .signup{
+        width: 200px;
+        height: 250px;
+        background-color: white;
+        margin: 10px auto;
+        border-radius: 10px;
+        border: 1px outset aliceblue;
+        position: relative;
+    }
+    .form{
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        background-color: white;
+        padding-top: px;
+    
+    }
+    .form>input{
+        margin: 0.1rem 0.1rem;
+        width: 150px;
+        height: 5px;
+        border: 2px groove aliceblue;
+        border-radius: 2px;
+    
+    }
+    .form>input,label{
+    
+        margin: 4px;
+        width: 180px;
+        height: 20px;
+    
+    }
+    .form>h3{
+        margin-bottom: 2px;
+        margin-top: 2px;
+    }
+    .form>.submit{
+        width: 100px;
+        margin: 0 auto;
+        margin-left: 50px;
+        background-color: rgb(236, 148, 148);
+        border: 4px solid rgb(236, 148, 148)
+    }
+    .main{
+        margin: 0 auto;
+        height: fit-content;
+        text-align: center;
+        font-size: xx-large;
+        font-style: italic;
+        padding-top: 50px;
+        position: relative;
+        
+    }
+    .quote{
+        margin-bottom: 2rem;
+    }
+    .noBirthday{
+        margin-top: 4rem;
+    }
 }
-.div_container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    /* text-align: center; */
-    gap: 8px;
-    margin-top: 50px;  
-}
-.tags,.title{
-    margin-bottom: 1rem;
-}
-.time_count{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px;
-}
-.time_count>h6>.fa{
-    margin-right: 0.5rem;
-}
-.own_nav,.edit_nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.2rem;
-}
-#body{
-    margin-top: 0.5rem;
-    /* margin-bottom: 1.5rem; */
-    width: 300px;
-}
-
