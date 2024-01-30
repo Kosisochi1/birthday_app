@@ -11,15 +11,18 @@
 		<header><%- include('./partials/header'); %></header>
 		<main class="main">
 			<h2>Today's Quote</h2>
-			<p><%=quotes%></p>
-			<%if(checkUpComingBD.length >= 0){%> <%
-			checkUpComingBD.forEach(function(view_BD){%>
-			<h4><%= view_BD.Name%></h4>
-			<%})%> <%}else if(checkUpComingBD.length <= 0){%>
+			<p class="quote"><%=quotes%></p>
 
-			<h4>No Birthday</h4>
-
-			<%}%>
+			<div class="list">
+				<p class="quote">
+					The following persons will be celebrating there
+					<strong>Birthday</strong> Tomorrow
+				</p>
+				<%if(checkUpComingBD.length >= 0){%> <%
+				checkUpComingBD.forEach(function(view_BD){%>
+				<h4><span>>></span> <%= view_BD.Name%></h4>
+				<%})%> <%}%>
+			</div>
 		</main>
 
 		<footer><%- include('./partials/footer'); %></footer>

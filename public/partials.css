@@ -36,6 +36,9 @@ body{
     margin-right: 2rem;
     gap: 2rem;
 }
+.nav_item>li>a{
+    text-decoration: none;
+}
 .menu{
     display: none;
 }
@@ -65,6 +68,10 @@ body{
    
     .nav_item, .container{
         display: none;
+    }
+    .nav{
+        max-width:100% ;
+
     }
     .menu{
         display: flex;

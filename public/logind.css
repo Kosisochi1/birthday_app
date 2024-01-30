@@ -55,7 +55,7 @@ body{
 
 /* success css*/
 .success{
-    width: 270px;
+    max-width: 200px;
     height: 150px;
     background-color: white;
     margin: 4rem auto;

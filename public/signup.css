@@ -59,9 +59,12 @@ body{
     text-align: center;
     font-size: xx-large;
     font-style: italic;
-    padding-top: 100px;
+    padding-top: 50px;
     position: relative;
     
+}
+.quote{
+    margin-bottom: 2rem;
 }
 .noBirthday{
     margin-top: 4rem;
