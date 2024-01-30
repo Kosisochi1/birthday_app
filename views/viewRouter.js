@@ -93,10 +93,12 @@ router.get('/', async (req, res) => {
 	});
 });
 //Create Birthday Details
-router.get('/addDetails', (req, res) => {
+router.get('/addDetails', authenticate, (req, res) => {
 	res.render('birthDayDetails', { loginUser: res.locals.loginUser });
 });
 router.post('/addDetails', authenticate, async (req, res) => {
+	quote = getQuote();
+
 	const response = await birth_details.createBDdetails({
 		Name: req.body.Name,
 		Email: req.body.Email,
@@ -105,9 +107,9 @@ router.post('/addDetails', authenticate, async (req, res) => {
 	});
 	console.log(response);
 	if (response.code === 201) {
-		res.render('index', { loginUser: res.locals.loginUser || null });
+		res.redirect('home');
 	} else if (response.code === 409) {
-		res.send('detail_exist', { loginUser: res.locals.loginUser || null });
+		res.render('detail_exist', { loginUser: res.locals.loginUser || null });
 	}
 });
 // Logout Route
