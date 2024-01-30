@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../public/signup.css" />
+
+		<title>Document</title>
+	</head>
+	<body>
+		<header><%- include('./partials/header'); %></header>
+		<main class="main">
+			<h2>Today's Quote</h2>
+			<p><%=quotes%></p>
+			<%if(checkUpComingBD.length >= 0){%> <%
+			checkUpComingBD.forEach(function(view_BD){%>
+			<h4><%= view_BD.Email%></h4>
+			<%})%> <%}else if(checkUpComingBD.length <= 0){%>
+
+			<h4>No Birthday</h4>
+
+			<%}%>
+		</main>
+
+		<footer><%- include('./partials/footer'); %></footer>
+	</body>
+</html>
