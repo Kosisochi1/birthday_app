@@ -55,11 +55,11 @@ router.post('/login', async (req, res) => {
 		res.cookie('jwt', response.data.token, { maxAge: 60 * 60 * 1000 });
 		res.redirect('home');
 	} else if (response.code == 404) {
-		res.render('404');
+		res.render('404', { loginUser: res.locals.loginUser || null });
 	} else if (response.code == 422) {
 		res.render('wrongDetails', { loginUser: res.locals.loginUser || null });
 	} else {
-		res.send('error', { loginUser: res.locals.loginUser || null });
+		res.render('error', { loginUser: res.locals.loginUser || null });
 	}
 });
 //Home route
