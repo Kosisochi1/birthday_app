@@ -6,9 +6,9 @@ const logger = require('../logger/index');
 
 logger.info('[Mail Process]=> Started   ');
 
-const today = moment().format('YYYY-MM-DD');
-logger.info('[Mail Process]=> Started   ');
-
+const today = moment();
+var dayOfMonth = today.date();
+var monthValue = today.month() + 1;
 const transporter = mailer.createTransport({
 	service: 'gmail',
 	auth: {
@@ -22,9 +22,15 @@ const sendMailSettings = async (name) => {
 	logger.info('[Mail setting Process]=> Started   ');
 
 	const senderMail = await UserModel.find({});
-	const dT = new Date(`${today}`).toISOString();
 
-	const receiverMail = await DetailModel.find({ DoB: dT });
+	const receiverMail = await DetailModel.find({
+		$expr: {
+			$and: [
+				{ $eq: [{ $dayOfMonth: '$DoB' }, dayOfMonth] },
+				{ $eq: [{ $month: '$DoB' }, monthValue] },
+			],
+		},
+	});
 	const emails = receiverMail.map((email) => {
 		return email.Email;
 	});
@@ -33,7 +39,7 @@ const sendMailSettings = async (name) => {
 		from: `${senderMail.Email}`,
 		to: `${emails}`,
 		subject: 'Birthday Wishes',
-		text: `Dear ${name} \n\n On this specail day, we wish you joy, peace and good health.\n.Many more gracious years\n`,
+		text: `Dear ${name} \n\n On this specail day, we wish you joy, peace and good health.\n.Many more gracious years\n. Enjoy your day!!!`,
 	};
 	transporter.sendMail(mailOptions, (error, info) => {
 		if (error) {
@@ -48,8 +54,14 @@ logger.info('[Mail setting Process]=> Ended   ');
 const sendMail = async (req, res) => {
 	logger.info('[Mail sending Process]=> Started   ');
 
-	const dT = new Date('2024-01-21T00:00:00.000Z').toISOString();
-	const dateList = await DetailModel.find({ DoB: today });
+	const dateList = await DetailModel.find({
+		$expr: {
+			$and: [
+				{ $eq: [{ $dayOfMonth: '$DoB' }, dayOfMonth] },
+				{ $eq: [{ $month: '$DoB' }, monthValue] },
+			],
+		},
+	});
 	logger.info('[Mail sending Process]=> Mail Sent   ');
 
 	dateList.forEach((birthDate) => {

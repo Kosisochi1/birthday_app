@@ -8,12 +8,23 @@ const checkUpComingBD = async ({ user_id }) => {
 	logger.info('[Upcoming Birthday check Process]=> Started   ');
 
 	const today = moment();
-	const daysBack = today.add(1, 'days').format('YYYY-MM-DD');
+	var dayOfMonth = today.date() + 1;
+	var monthValue = today.month() + 1;
+	// const daysBack = today.add(1, 'days').format('YYYY-MM-DD');
 
-	const checkBirthday = await detailModel.find({
-		user_id: user_id,
-		DoB: daysBack,
-	});
+	const checkBirthday = await detailModel
+		.find({
+			user_id: user_id,
+			$expr: {
+				$and: [
+					{ $eq: [{ $dayOfMonth: '$DoB' }, dayOfMonth] },
+					{ $eq: [{ $month: '$DoB' }, monthValue] },
+				],
+			},
+		})
+		.exec();
+	console.log(checkBirthday);
+
 	logger.info('[Upcoming Birthday check Process]=> Completed   ');
 
 	return {
