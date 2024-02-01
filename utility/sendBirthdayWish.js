@@ -54,6 +54,7 @@ logger.info('[Mail setting Process]=> Ended   ');
 const sendMail = async (req, res) => {
 	logger.info('[Mail sending Process]=> Started   ');
 
+	// const dT = new Date('2024-01-21T00:00:00.000Z').toISOString();
 	const dateList = await DetailModel.find({
 		$expr: {
 			$and: [
@@ -64,9 +65,11 @@ const sendMail = async (req, res) => {
 	});
 	logger.info('[Mail sending Process]=> Mail Sent   ');
 
+	// for (let i = 0; dateList.length - 1 >= i; i++) {
 	dateList.forEach((birthDate) => {
-		sendMailSettings(birthDate.Name);
+		sendMailSettings(birthDate.Name[i]);
 	});
+	// }
 };
 
 module.exports = { sendMail };
