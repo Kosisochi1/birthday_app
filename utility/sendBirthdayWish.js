@@ -67,7 +67,7 @@ const sendMail = async (req, res) => {
 
 	// for (let i = 0; dateList.length - 1 >= i; i++) {
 	dateList.forEach((birthDate) => {
-		sendMailSettings(birthDate.Name[i]);
+		sendMailSettings(birthDate.Name);
 	});
 	// }
 };
