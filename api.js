@@ -27,9 +27,9 @@ app.use('/', viewRoute);
 
 // app.get('/bd', authorization.authenticate, BD.checkUpComingBD);
 
-SM.sendMail();
+// SM.sendMail();
 // cron.schedule('0 1 * * *', BD.checkUpComingBD);
-cron.schedule('0 15 * * *', SM.sendMail);
+cron.schedule('0 22 * * *', SM.sendMail);
 
 app.get('*', (req, res) => {
 	res.status(404).json({

@@ -18,7 +18,7 @@ const transporter = mailer.createTransport({
 });
 logger.info('[Mail Process]=> Started   ');
 
-const sendMailSettings = async (name) => {
+const sendMailSettings = async (name, senderEmails) => {
 	logger.info('[Mail setting Process]=> Started   ');
 
 	const senderMail = await UserModel.find({});
@@ -37,7 +37,7 @@ const sendMailSettings = async (name) => {
 
 	const mailOptions = {
 		from: `${senderMail.Email}`,
-		to: `${emails}`,
+		to: `${senderEmails}`,
 		subject: 'Birthday Wishes',
 		text: `Dear ${name} \n\n On this specail day, we wish you joy, peace and good health.\n.Many more gracious years\n. Enjoy your day!!!`,
 	};
@@ -67,7 +67,7 @@ const sendMail = async (req, res) => {
 
 	// for (let i = 0; dateList.length - 1 >= i; i++) {
 	dateList.forEach((birthDate) => {
-		sendMailSettings(birthDate.Name);
+		sendMailSettings(birthDate.Name, birthDate.Email);
 	});
 	// }
 };
