@@ -29,7 +29,7 @@ app.use('/', viewRoute);
 
 // SM.sendMail();
 // cron.schedule('0 1 * * *', BD.checkUpComingBD);
-cron.schedule('0 22 * * *', SM.sendMail);
+cron.schedule('0 7 * * *', SM.sendMail);
 
 app.get('*', (req, res) => {
 	res.status(404).json({
